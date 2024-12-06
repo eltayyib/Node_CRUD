@@ -39,7 +39,6 @@ exports.acceptCodeSchema = Joi.object({
         .required()
 });
 
-// Schema for changing password
 exports.changePasswordSchema = Joi.object({
     newPassword: Joi.string()
         .required()
@@ -53,7 +52,7 @@ exports.changePasswordSchema = Joi.object({
         .message('Password must be between 8 and 30 characters and include letters, numbers, or special characters like !@#$%^&*')
 });
 
-// Schema for accepting forgot password code (similar to acceptCodeSchema but more specific)
+
 exports.acceptFPCodeSchema = Joi.object({
     email: Joi.string()
         .min(6)
@@ -62,4 +61,16 @@ exports.acceptFPCodeSchema = Joi.object({
         .email({ tlds: { allow: ['com', 'net'] } }),
     providedCode: Joi.number()
         .required(),
+});
+
+exports.createPostSchema = Joi.object({
+    title: Joi.string()
+        .min(6)
+        .max(60)
+        .required(),
+     
+    description: Joi.string()
+        .min(6)
+        .max(60)
+        .required()
 });
